@@ -4,6 +4,8 @@
 
 package com.mephi.detectives.detective;
 
+import Model.DataGenerator;
+
 /**
  *
  * @author vika
@@ -11,6 +13,8 @@ package com.mephi.detectives.detective;
 public class Detective {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+//        DataGenerator per = new DataGenerator();
+//            
+//        System.out.println(per.infoGeneration());
     }
 }

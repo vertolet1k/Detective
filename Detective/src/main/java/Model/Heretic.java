@@ -12,14 +12,14 @@ import java.util.ArrayList;
  */
 public class Heretic {
     private String name;
-    private ArrayList <String> crimes;
+    private String crime;
     private String lastPlace;
-    private Integer id;
+    private String id;
     private String dangerlevel;
 
-    public Heretic(String name, ArrayList<String> crimes, String lastPlace, Integer id, String dangerlevel) {
+    public Heretic(String name, String crime, String lastPlace, String id, String dangerlevel) {
         this.name = name;
-        this.crimes = crimes;
+        this.crime = crime;
         this.lastPlace = lastPlace;
         this.id = id;
         this.dangerlevel = dangerlevel;
@@ -33,12 +33,12 @@ public class Heretic {
         this.name = name;
     }
 
-    public ArrayList<String> getCrimes() {
-        return crimes;
+    public String getCrimes() {
+        return crime;
     }
 
-    public void setCrimes(ArrayList<String> crimes) {
-        this.crimes = crimes;
+    public void setCrimes(String crimes) {
+        this.crime = crimes;
     }
 
     public String getLastPlace() {
@@ -49,11 +49,11 @@ public class Heretic {
         this.lastPlace = lastPlace;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
