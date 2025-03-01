@@ -16,6 +16,10 @@ public class Heretic {
     private String lastPlace;
     private String id;
     private String dangerlevel;
+    
+    public Heretic(){
+        
+    }
 
     public Heretic(String name, String crime, String lastPlace, String id, String dangerlevel) {
         this.name = name;
@@ -33,7 +37,7 @@ public class Heretic {
         this.name = name;
     }
 
-    public String getCrimes() {
+    public String getCrime() {
         return crime;
     }
 

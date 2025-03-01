@@ -4,11 +4,21 @@
  */
 package View;
 
+import Contoller.Controller;
+import Model.Heretic;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author vika
  */
 public class GUI extends javax.swing.JFrame {
+    
+    Controller control = new Controller();
+    private int r = 0;
 
     /**
      * Creates new form GUI
@@ -27,13 +37,13 @@ public class GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jTablePrisoners = new javax.swing.JTable();
+        addButton = new javax.swing.JButton();
+        infoButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePrisoners.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -59,22 +69,22 @@ public class GUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(2);
+        jScrollPane1.setViewportView(jTablePrisoners);
+        if (jTablePrisoners.getColumnModel().getColumnCount() > 0) {
+            jTablePrisoners.getColumnModel().getColumn(0).setMinWidth(2);
         }
 
-        jButton1.setText("Добавить");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setText("Добавить");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Инфо");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        infoButton.setText("Инфо");
+        infoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                infoButtonActionPerformed(evt);
             }
         });
 
@@ -86,9 +96,9 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(152, 152, 152)
-                        .addComponent(jButton1)
+                        .addComponent(addButton)
                         .addGap(55, 55, 55)
-                        .addComponent(jButton2))
+                        .addComponent(infoButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -101,21 +111,30 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(addButton)
+                    .addComponent(infoButton))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        ArrayList<Heretic> data = control.addHeretic();
+//        System.out.println(data.get(0).getName());
+        System.out.println(data.size());
+        DefaultTableModel tableModel = (DefaultTableModel) jTablePrisoners.getModel();
+        tableModel.addRow(new Vector<String>());
+        jTablePrisoners.setValueAt(data.get(r).getId(), r, 0);
+        jTablePrisoners.setValueAt(data.get(r).getName(), r, 1);
+        r++;
+    }//GEN-LAST:event_addButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void infoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoButtonActionPerformed
+        String message = control.showInfo(jTablePrisoners.getSelectedRow());
+        JOptionPane.showMessageDialog(null, message, "bla bla", JOptionPane.INFORMATION_MESSAGE);
+        
+    }//GEN-LAST:event_infoButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,9 +172,9 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton infoButton;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTablePrisoners;
     // End of variables declaration//GEN-END:variables
 }

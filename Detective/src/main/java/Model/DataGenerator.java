@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public class DataGenerator {
     
-    private ArrayList<Heretic> persons; 
+//    private ArrayList<Heretic> person; 
     
     Faker faker = new Faker();
     
@@ -20,18 +20,16 @@ public class DataGenerator {
     
     public ArrayList<Heretic> infoGeneration(){
         
-        ArrayList<Heretic> persons = new ArrayList<>();
+        ArrayList<Heretic> person = new ArrayList<>();
+
+        String name = faker.name().fullName();
+        String crime = faker.harryPotter().spell();
+        String lastPlace = faker.address().streetAddress();
+        String id = faker.idNumber().valid();
+        String dangerlevel = level.get(faker.number().numberBetween(0, 2));
+        person.add(new Heretic(name, crime, lastPlace, id, dangerlevel));
         
-        for (int i = 0; i <= 10; i++){
-            String name = faker.name().fullName();
-            String crime = faker.harryPotter().spell();
-            String lastPlace = faker.address().streetAddress();
-            String id = faker.idNumber().valid();
-            String dangerlevel = level.get(faker.number().numberBetween(0, 2));
-            System.out.println(name + crime + lastPlace + id + dangerlevel);
-            persons.add(new Heretic(name, crime, lastPlace, id, dangerlevel));
-        }
-        return persons;
+        return person;
     }
     
 }
